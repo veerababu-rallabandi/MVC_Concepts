@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MVCConcepts_Learning.Models;
 using System;
@@ -12,14 +13,17 @@ namespace MVCConcepts_Learning.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IConfiguration _configuation;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IConfiguration configuration)
         {
             _logger = logger;
+            _configuation = configuration;
         }
 
         public IActionResult Index()
         {
+            string value = _configuation.GetValue<string>("connectionstring");
             return View();
         }
 
