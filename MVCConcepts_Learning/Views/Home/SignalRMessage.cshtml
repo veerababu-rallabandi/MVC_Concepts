@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using MVCConcepts_Learning.Models
+@model Notifications
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@using (Html.BeginForm("SignalRMessage", "Home", FormMethod.Post, new { id = "Notifications" }))
+{
+    <div class="row">
+        <div class="col-6">
+            Article Heading
+        </div>
+        <div class="col-6">
+            <input type="text" id="articleHeading" name="articleHeading"/>
+            @Html.TextBoxFor(model => Model.MessageTitle, new { @maxlength ="50"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Article Content
+        </div>
+        <div class="col-6">
+            @Html.TextBoxFor(model => Model.MessageBody, new { @maxlength ="100"})
+        </div>
+    </div>
+    <div>
+        <button type="submit" id=”Add” value="Add" />
+    </div>
+}
+
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div id="articleList"></div>
+</div>
+<script>
+    function ready() {
+    }
+    //random number between 1 and 100 for demo
+    var userId = Math.floor((Math.random() * 100) + 1);
+    document.addEventListener("DOMContentLoaded", ready);
+</script>
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/notification.js"></script>*@
