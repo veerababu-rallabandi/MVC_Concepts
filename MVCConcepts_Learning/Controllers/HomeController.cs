@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MVCConcepts_Learning.AccessAppsettings;
+using MVCConcepts_Learning;
 using MVCConcepts_Learning.Models;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,16 @@ namespace MVCConcepts_Learning.Controllers
         private readonly IConfiguration _configuation;
         //and also Mentioned in startup class also.
         private  IOptions<EmailDetails> _options;
+
+        private readonly IHubContext<Chat> _hubContext;
         
 
-        public HomeController(ILogger<HomeController> logger,IConfiguration configuration,IOptions<EmailDetails> options)
+        public HomeController(ILogger<HomeController> logger,IConfiguration configuration,IOptions<EmailDetails> options,IHubContext<Chat> hubContext)
         {
             _logger = logger;
             _configuation = configuration;
             _options = options;
+            _hubContext = hubContext;
         }
 
         public IActionResult Index()
@@ -55,6 +59,16 @@ namespace MVCConcepts_Learning.Controllers
         public JsonResult DisplayMessage()
         {
              return Json(new { id = 1, name = "veerababu" });
+        }
+        public async Task<ActionResult> SignalRMessage()
+        {   
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> SignalRMessage(Notifications notifications)
+        {
+            await _hubContext.Clients.All.SendAsync("sendToUser", notifications.MessageTitle, notifications.MessageBody);
+            return View();
         }
     }
 
