@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using MVCConcepts_Learning.AccessAppsettings;
+using MVCConcepts_Learning;
+using MVCConcepts_Learning.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,7 @@ namespace MVCConcepts_Learning
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();
 
 
             //To access configuration information in the Startup class, inject the IConfiguration service provided by the Framework.
@@ -52,8 +54,8 @@ namespace MVCConcepts_Learning
                 app.UseHsts();
             }
             //Include Custom middle..
-            app.UseCustomMiddleware();
-            app.UseHttpsRedirection();
+            //app.UseCustomMiddleware();
+            //app.UseHttpsRedirection();
 
             //Default Page when User Login
             FileServerOptions fileServerOptions = new FileServerOptions();
@@ -62,6 +64,10 @@ namespace MVCConcepts_Learning
             app.UseFileServer(fileServerOptions);
 
             app.UseStaticFiles();
+            app.UseSignalR(config =>
+            {
+                config.MapHub<Chat>("/Chat");
+            });
 
             app.UseRouting();
 

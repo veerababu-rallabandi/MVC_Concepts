@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\source\\repos\\MVCConcepts_Learning\\MVCConcepts_Learning\\MVCConcepts_Learning.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Source\\Repos\\Learning_Concepts\\MVCConcepts_Learning\\MVCConcepts_Learning.csproj",
       "projectName": "MVCConcepts_Learning",
-      "projectPath": "C:\\Users\\hp\\source\\repos\\MVCConcepts_Learning\\MVCConcepts_Learning\\MVCConcepts_Learning.csproj",
+      "projectPath": "C:\\Users\\hp\\Source\\Repos\\Learning_Concepts\\MVCConcepts_Learning\\MVCConcepts_Learning.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\source\\repos\\MVCConcepts_Learning\\MVCConcepts_Learning\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Source\\Repos\\Learning_Concepts\\MVCConcepts_Learning\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",

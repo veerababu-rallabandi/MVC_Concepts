@@ -60,11 +60,7 @@ namespace MVCConcepts_Learning.Controllers
         {
              return Json(new { id = 1, name = "veerababu" });
         }
-        public async Task<ActionResult> SignalRMessage()
-        {   
-            return View();
-        }
-        [HttpPost]
+       
         public async Task<ActionResult> SignalRMessage(Notifications notifications)
         {
             await _hubContext.Clients.All.SendAsync("sendToUser", notifications.MessageTitle, notifications.MessageBody);
